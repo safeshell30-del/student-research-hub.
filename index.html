@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#123b63">
+<title>Student Research Hub</title>
+<style>
+:root{--navy:#123b63;--blue:#2469a6;--pale:#edf5fc;--ink:#183047;--muted:#60758a;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f7fb;color:var(--ink)}
+header{background:linear-gradient(135deg,#123b63,#2675b8);color:white;padding:25px 18px 30px}
+.top{max-width:1050px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{font-weight:800;letter-spacing:.4px}.tag{font-size:12px;background:#ffffff22;padding:7px 10px;border-radius:20px}
+.hero{max-width:1050px;margin:30px auto 0}.hero h1{font-size:clamp(28px,5vw,42px);margin:0 0 10px}.hero p{max-width:600px;line-height:1.6;color:#e4f1fc;margin:0}
+nav{display:flex;gap:8px;overflow-x:auto;padding:12px max(16px,calc((100% - 1050px)/2));background:white;box-shadow:0 2px 10px #17334c10;position:sticky;top:0;z-index:5}
+nav button{white-space:nowrap;border:0;background:transparent;color:var(--muted);padding:10px 13px;border-radius:10px;font-weight:700;cursor:pointer}
+nav button.active,nav button:hover{background:var(--pale);color:var(--blue)}
+main{max-width:1050px;margin:24px auto;padding:0 16px 50px}.view{display:none}.view.active{display:block}
+h2{margin:0 0 8px;font-size:25px}.intro{color:var(--muted);line-height:1.5;margin:0 0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.card{background:white;border:1px solid #e4ebf2;border-radius:16px;padding:18px;box-shadow:0 4px 14px #193b5610}
+.card h3{margin:8px 0;font-size:17px}.card p{color:var(--muted);line-height:1.5;font-size:14px}
+.icon{font-size:26px}.btn{border:0;background:var(--blue);color:white;padding:11px 15px;border-radius:10px;font-weight:700;cursor:pointer}.btn.secondary{background:var(--pale);color:var(--blue)}.btn:focus,input:focus,select:focus,textarea:focus{outline:3px solid #9dc9ef}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.field{display:flex;flex-direction:column;gap:6px;margin:12px 0}.field label{font-weight:700;font-size:14px}.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid #ccd8e3;border-radius:10px;font:inherit;background:white;color:var(--ink)}
+.topic{padding:13px;background:#f7faff;border-radius:10px;margin:9px 0;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.topic button{flex-shrink:0}.pill{display:inline-block;background:#eaf3fb;color:#245d8d;padding:5px 9px;border-radius:20px;font-size:12px;font-weight:700}
+.guide{border-left:4px solid #75a9d3;padding:8px 0 8px 14px;margin:13px 0}.guide h3{margin:0 0 5px}.guide p{margin:0;color:var(--muted);line-height:1.5}
+.notice{padding:13px;background:#fff8e8;border:1px solid #f1dfb4;border-radius:10px;color:#72551a;font-size:13px;line-height:1.5}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:24px}
+.empty{color:var(--muted);padding:15px 0}
+@media(max-width:600px){.hero{margin-top:24px}.card{padding:15px}main{margin-top:18px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="top"><div class="brand">📘 RESEARCH HUB</div><span class="tag">For every learner</span></div>
+  <div class="hero"><h1>Discover. Research. Learn.</h1><p>A student-friendly place to explore research ideas, understand research methods, and build academic skills—from elementary to college.</p></div>
+</header>
+<nav aria-label="Main navigation">
+  <button class="active" data-view="home">Home</button><button data-view="topics">Topic Ideas</button><button data-view="guides">Research Guides</button><button data-view="library">Resources</button><button data-view="saved">Saved</button><button data-view="citation">APA Helper</button>
+</nav>
+<main>
+<section id="home" class="view active">
+  <h2>Welcome, researcher! 👋</h2><p class="intro">Choose a tool to get started. Use these materials as learning support and always check information with your teacher and reliable sources.</p>
+  <div class="grid">
+    <article class="card"><div class="icon">💡</div><h3>Find a research topic</h3><p>Explore sample topics by school level and subject.</p><button class="btn" onclick="show('topics')">Explore topics</button></article>
+    <article class="card"><div class="icon">🧭</div><h3>Learn research basics</h3><p>Understand the parts of a research project, step by step.</p><button class="btn" onclick="show('guides')">Open guides</button></article>
+    <article class="card"><div class="icon">🔎</div><h3>Find reliable sources</h3><p>Visit academic search and writing resources.</p><button class="btn" onclick="show('library')">View resources</button></article>
+    <article class="card"><div class="icon">📚</div><h3>Build your references</h3><p>Use the APA helper to format a basic reference.</p><button class="btn" onclick="show('citation')">APA helper</button></article>
+  </div>
+  <div class="notice" style="margin-top:18px"><strong>Research reminder:</strong> This app provides examples and study support. It does not verify sources or replace your teacher's instructions. Never submit generated ideas or text without checking, understanding, and properly citing your sources.</div>
+</section>
+<section id="topics" class="view">
+  <h2>Research topic ideas</h2><p class="intro">Choose your grade range and subject to see sample topics you can adapt.</p>
+  <div class="row">
+    <div class="field" style="flex:1;min-width:180px"><label for="level">School level</label><select id="level"><option>Elementary</option><option>Junior High School</option><option>Senior High School</option><option>College</option></select></div>
+    <div class="field" style="flex:1;min-width:180px"><label for="subject">Subject</label><select id="subject"><option>General</option><option>Science</option><option>Technology</option><option>Environment</option><option>Education</option><option>Community</option></select></div>
+  </div>
+  <button class="btn" onclick="generateTopics()">Show topic ideas</button><div id="topicList" style="margin-top:15px"></div>
+</section>
+<section id="guides" class="view">
+  <h2>Research guides</h2><p class="intro">A simple overview of common research steps. Your school may use a different format, so follow your teacher's required structure.</p>
+  <div class="card">
+    <div class="guide"><h3>1. Choose a focused topic</h3><p>Select something relevant, manageable, and suitable for your grade level. Make sure information and sources are available.</p></div>
+    <div class="guide"><h3>2. Write the research problem</h3><p>Explain what you want to understand. Turn the topic into clear research questions.</p></div>
+    <div class="guide"><h3>3. Review related literature</h3><p>Find trustworthy books, articles, and studies. Take notes and record source details as you read.</p></div>
+    <div class="guide"><h3>4. Choose a method</h3><p>Decide what information you need and how to collect it. Ask permission and protect participants' privacy.</p></div>
+    <div class="guide"><h3>5. Organize and analyze information</h3><p>Present findings accurately. Do not invent, change, or hide data to make results look better.</p></div>
+    <div class="guide"><h3>6. Write the conclusion and references</h3><p>Answer your research questions using your findings. Cite every source you used in the required format.</p></div>
+  </div>
+  <h3 style="margin-top:22px">Common research paper chapters</h3>
+  <div class="grid">
+    <div class="card"><span class="pill">Chapter 1</span><h3>The Problem and Its Background</h3><p>Introduction, background, problem, significance, scope, and definitions.</p></div>
+    <div class="card"><span class="pill">Chapter 2</span><h3>Review of Related Literature</h3><p>Relevant studies, literature, and the research gap.</p></div>
+    <div class="card"><span class="pill">Chapter 3</span><h3>Methodology</h3><p>Research design, participants, instruments, and procedures.</p></div>
+    <div class="card"><span class="pill">Chapter 4</span><h3>Results and Discussion</h3><p>Findings, tables, analysis, and interpretation.</p></div>
+    <div class="card"><span class="pill">Chapter 5</span><h3>Summary, Conclusions, and Recommendations</h3><p>Key findings, conclusions, and practical recommendations.</p></div>
+  </div>
+</section>
+<section id="library" class="view">
+  <h2>Research resources</h2><p class="intro">These external resources can help you search for information and improve your writing. Check each source's credibility and publication details.</p>
+  <div class="grid">
+    <article class="card"><div class="icon">🎓</div><h3>Google Scholar</h3><p>Search scholarly articles, theses, books, and academic papers.</p><a class="btn" href="https://scholar.google.com/" target="_blank" rel="noopener">Open resource ↗</a></article>
+    <article class="card"><div class="icon">📖</div><h3>ERIC</h3><p>Find education research and related publications.</p><a class="btn" href="https://eric.ed.gov/" target="_blank" rel="noopener">Open resource ↗</a></article>
+    <article class="card"><div class="icon">✍️</div><h3>Purdue OWL</h3><p>Learn about academic writing, citation, and APA style.</p><a class="btn" href="https://owl.purdue.edu/" target="_blank" rel="noopener">Open resource ↗</a></article>
+    <article class="card"><div class="icon">🌐</div><h3>DOAJ</h3><p>Discover open-access scholarly journals.</p><a class="btn" href="https://doaj.org/" target="_blank" rel="noopener">Open resource ↗</a></article>
+  </div>
+</section>
+<section id="saved" class="view">
+  <h2>Saved topics</h2><p class="intro">Your saved topic ideas are stored in this browser on this device.</p><div id="savedList"></div>
+</section>
+<section id="citation" class="view">
+  <h2>APA reference helper</h2><p class="intro">Fill in the details to create a basic APA 7 reference for a webpage. Check the final format against your teacher's instructions.</p>
+  <div class="card">
+    <div class="field"><label for="author">Author or organization</label><input id="author" placeholder="e.g. World Health Organization"></div>
+    <div class="field"><label for="date">Publication date</label><input id="date" placeholder="e.g. 2024, May 10"></div>
+    <div class="field"><label for="title">Webpage title</label><input id="title" placeholder="Title of the webpage"></div>
+    <div class="field"><label for="site">Website name</label><input id="site" placeholder="Name of website"></div>
+    <div class="field"><label for="url">URL</label><input id="url" type="url" placeholder="https://example.com"></div>
+    <button class="btn" onclick="makeCitation()">Create reference</button>
+    <div id="citationOutput" class="notice" style="display:none;margin-top:15px"></div>
+    <button id="copyCitation" class="btn secondary" style="display:none;margin-top:10px" onclick="copyCitationText()">Copy reference</button>
+  </div>
+</section>
+</main>
+<footer>Student Research Hub · Learn with curiosity, research with care.</footer>
+<script>
+const topicData={
+"General":["Study habits and students' learning experiences","How school activities encourage teamwork","The role of time management in completing schoolwork"],
+"Science":["How different light conditions affect plant growth","Everyday ways to reduce household waste","Students' understanding of basic nutrition"],
+"Technology":["How students use educational apps for learning","Digital tools and classroom collaboration","Students' awareness of online information safety"],
+"Environment":["Ways students can reduce single-use plastic at school","School gardens and environmental awareness","How recycling practices vary in a community"],
+"Education":["Study routines and classroom participation","Reading habits among students","Group activities and students' learning experiences"],
+"Community":["Community clean-up programs and student participation","Public spaces and the needs of young people","How local libraries support student learning"]
+};
+let saved=JSON.parse(localStorage.getItem('researchHubSaved')||'[]');
+function show(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===id));if(id==='saved')renderSaved();window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>show(b.dataset.view)));
+function generateTopics(){const level=document.getElementById('level').value,subject=document.getElementById('subject').value;const list=topicData[subject];document.getElementById('topicList').innerHTML=list.map((t,i)=>`<div class="topic"><div><span class="pill">${level}</span><div style="margin-top:7px">${t}</div></div><button class="btn secondary" onclick="saveTopic(${JSON.stringify(t).replace(/"/g,'&quot;')})">☆ Save</button></div>`).join('')}
+function saveTopic(t){if(!saved.includes(t)){saved.push(t);localStorage.setItem('researchHubSaved',JSON.stringify(saved))}alert('Topic saved! Open the Saved tab to view it.')}
+function renderSaved(){const el=document.getElementById('savedList');el.innerHTML=saved.length?saved.map((t,i)=>`<div class="topic"><span>${t}</span><button class="btn secondary" onclick="removeTopic(${i})">Remove</button></div>`).join(''):'<p class="empty">No saved topics yet. Browse Topic Ideas and tap Save.</p>'}
+function removeTopic(i){saved.splice(i,1);localStorage.setItem('researchHubSaved',JSON.stringify(saved));renderSaved()}
+let citationText='';
+function makeCitation(){const a=document.getElementById('author').value.trim(),d=document.getElementById('date').value.trim()||'n.d.',t=document.getElementById('title').value.trim(),s=document.getElementById('site').value.trim(),u=document.getElementById('url').value.trim();if(!a||!t||!u){alert('Please enter at least the author, webpage title, and URL.');return}citationText=`${a}. (${d}). ${t}. ${s?s+'. ':''}${u}`;const out=document.getElementById('citationOutput');out.textContent=citationText;out.style.display='block';document.getElementById('copyCitation').style.display='inline-block'}
+function copyCitationText(){navigator.clipboard.writeText(citationText).then(()=>alert('Reference copied.')).catch(()=>alert('Copy is unavailable in this browser. You can select the reference text manually.'))}
+generateTopics();
+</script>
+</body>
+</html>
